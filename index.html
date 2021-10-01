@@ -17,27 +17,37 @@
                 <th>Capacity</th>
                 <th>Category_id</th>
                 <th>Name</th>
-            </thead>
+            </thead class="cuerpoTabla">
+            <tbody>
+
+            </tbody>
         </table>
 
     </div>
 
 </body>
-<script type="text/javascript">
-    
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+
+        function cargarTabla(){
+            $.ajax({
+                url: 'https://g7dc3136fcccd78-db202109231843.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/costumes/costumes',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response){
+                    var resultado = "" ;
+                    response.items.array.forEach(function(item){
+                        resultado+="<tr"
+                    });
+                },
+                error: function(xhr,status){
+
+                }
+            })
+        }
+
         $(document).ready(function(){
-
-            $("#contenido").append("<p>Parrafo</p>");
-
+            cargarTabla();
         });
-    
-    
-        //var contenido = document.getElementById("contenido");
-        //contenido.innerHTML = "Hola Mundo 2";
-        //contenido.style.backgroundColor= "red";
-        //contenido.style.width=200+"px";
-
-        
-    
-</script>
+    </script>
 </html>
